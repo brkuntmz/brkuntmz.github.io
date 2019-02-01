@@ -1,26 +1,61 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Exercises from "./components/Exercises";
+import { exercises, muscles } from "./store";
 
 class App extends Component {
+  state = {
+    exercises,
+    exercise: {}
+  };
+
+  getExercisesByBodyPart() {
+    return Object.entries(
+      this.state.exercises.reduce((exercises, exercise) => {
+        const { muscles } = exercise;
+
+        exercises[muscles] = exercises[muscles]
+          ? [...exercises[muscles], exercise]
+          : [exercise];
+
+        return exercises;
+      }, {})
+    );
+  }
+
+  handleSelectedCategory = category => {
+    this.setState({
+      category
+    });
+  };
+
+  handleSelectedExercise = id => {
+    this.setState(({ exercises }) => ({
+      exercise: exercises.find(ex => ex.id === id)
+    }));
+  };
+
   render() {
+    const exercises = this.getExercisesByBodyPart();
+    const { category, exercise } = this.state;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Fragment>
+        <Header />
+        <Exercises
+          exercise={exercise}
+          exercises={exercises}
+          category={category}
+          onSelect={this.handleSelectedExercise}
+        />
+        <Footer
+          muscles={muscles}
+          category={category}
+          onSelect={this.handleSelectedCategory}
+        />
+      </Fragment>
     );
   }
 }
