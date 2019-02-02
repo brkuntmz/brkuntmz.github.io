@@ -5,8 +5,13 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography
+  ListItemSecondaryAction,
+  Typography,
+  IconButton
 } from "@material-ui/core";
+
+import { Delete, Edit } from "@material-ui/icons";
+import Form from "./Form";
 
 const styles = {
   Paper: {
@@ -24,11 +29,17 @@ const index = ({
   exercises,
   category,
   onSelect,
+  exercise,
   exercise: {
     id,
     title = "Welcome to Exercise DB!",
     description = "Please select an exercise to learn more!"
-  }
+  },
+  onDelete,
+  onSelectEdit,
+  onEdit,
+  editMode,
+  muscles
 }) => {
   return (
     <Grid container>
@@ -41,9 +52,17 @@ const index = ({
                   {bodyPart}
                 </Typography>
                 <List component="nav">
-                  {exercises.map(({ id, title }) => (
+                  {exercises.map(({ id, title, description }) => (
                     <ListItem button key={id} onClick={() => onSelect(id)}>
                       <ListItemText primary={title} />
+                      <ListItemSecondaryAction key={id}>
+                        <IconButton onClick={() => onSelectEdit(id)}>
+                          <Edit />
+                        </IconButton>
+                        <IconButton onClick={() => onDelete(id)}>
+                          <Delete />
+                        </IconButton>
+                      </ListItemSecondaryAction>
                     </ListItem>
                   ))}
                 </List>
@@ -54,8 +73,14 @@ const index = ({
       </Grid>
       <Grid item sm>
         <Paper style={styles.Paper}>
-          <Typography variant="headline">{title}</Typography>
-          <Typography variant="subheading">{description}</Typography>
+          {editMode ? (
+            <Form muscles={muscles} onSubmit={onEdit} exercise={exercise} />
+          ) : (
+            <Fragment>
+              <Typography variant="headline">{title}</Typography>
+              <Typography variant="subheading">{description}</Typography>
+            </Fragment>
+          )}
         </Paper>
       </Grid>
     </Grid>

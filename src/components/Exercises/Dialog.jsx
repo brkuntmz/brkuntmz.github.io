@@ -1,16 +1,16 @@
 import React, { Component, Fragment } from "react";
+
+import Form from "./Form";
 import AddIcon from "@material-ui/icons/Add";
 import {
-  Button,
   Fab,
   Dialog,
-  DialogActions,
   DialogTitle,
   DialogContent,
   DialogContentText
 } from "@material-ui/core";
 
-export default class Create extends Component {
+class Create extends Component {
   state = {
     open: false
   };
@@ -21,14 +21,23 @@ export default class Create extends Component {
     });
   };
 
+  handleSubmission = exercise => {
+    this.setState({ open: !this.state.open });
+    this.props.onSubmit(exercise);
+  };
+
   render() {
+    const { open } = this.state;
+    const { bodyParts, onSubmit } = this.props;
+
     return (
       <Fragment>
         <Fab size="small" color="secondary" onClick={this.toggleButton}>
           <AddIcon />
         </Fab>
         <Dialog
-          open={this.state.open}
+          fullWidth={true}
+          open={open}
           onClose={this.toggleButton}
           aria-labelledby="max-width-dialog-title"
         >
@@ -37,17 +46,14 @@ export default class Create extends Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Please create any exercise you'd like
+              Please create any exercise that'll be addictive!
             </DialogContentText>
-            <form noValidate />
+            <Form muscles={bodyParts} onSubmit={this.handleSubmission} />
           </DialogContent>
-          <DialogActions>
-            <Button onClick={this.toggleButton} color="primary">
-              Close
-            </Button>
-          </DialogActions>
         </Dialog>
       </Fragment>
     );
   }
 }
+
+export default Create;
