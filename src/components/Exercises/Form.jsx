@@ -9,14 +9,6 @@ import {
   TextField
 } from "@material-ui/core";
 
-import { withStyles } from "@material-ui/core";
-
-const styles = theme => ({
-  formControl: {
-    width: 500
-  }
-});
-
 class Form extends Component {
   state = this.getInitState();
 
@@ -50,7 +42,7 @@ class Form extends Component {
 
   render() {
     const { muscles, title, description } = this.state;
-    const { exercise, classes, muscles: bodyParts } = this.props;
+    const { exercise, muscles: bodyParts } = this.props;
 
     return (
       <form>
@@ -59,10 +51,10 @@ class Form extends Component {
           value={title}
           onChange={e => this.handleChange(e, "title")}
           margin="normal"
-          className={classes.formControl}
+          fullWidth
         />
         <br />
-        <FormControl className={classes.formControl}>
+        <FormControl fullWidth>
           <InputLabel htmlFor="muscles">Muscles</InputLabel>
           <Select
             value={muscles}
@@ -83,13 +75,14 @@ class Form extends Component {
           value={description}
           onChange={e => this.handleChange(e, "description")}
           margin="normal"
-          className={classes.formControl}
+          fullWidth
         />
         <br />
         <Button
           variant="contained"
           color="secondary"
           onClick={this.handleCreateExercise}
+          disabled={!title || !muscles}
         >
           {exercise ? "Edit" : "Create"}
         </Button>
@@ -98,4 +91,4 @@ class Form extends Component {
   }
 }
 
-export default withStyles(styles)(Form);
+export default Form;

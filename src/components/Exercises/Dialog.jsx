@@ -36,7 +36,8 @@ class Create extends Component {
           <AddIcon />
         </Fab>
         <Dialog
-          fullWidth={true}
+          fullWidth
+          maxWidth="xs"
           open={open}
           onClose={this.toggleButton}
           aria-labelledby="max-width-dialog-title"

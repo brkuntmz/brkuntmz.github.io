@@ -7,23 +7,47 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   Typography,
-  IconButton
+  IconButton,
+  withStyles
 } from "@material-ui/core";
 
 import { Delete, Edit } from "@material-ui/icons";
 import Form from "./Form";
 
-const styles = {
-  Paper: {
-    padding: 20,
-    margin: 10,
-    height: "500px",
-    overflowY: "auto"
+const styles = theme => ({
+  paper: {
+    padding: theme.spacing.unit * 3,
+    overflowY: "auto",
+    [theme.breakpoints.up("sm")]: {
+      margin: 5,
+      height: "calc(100% - 10px)"
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "100% "
+    }
   },
-  Typo: {
+  typo: {
     textTransform: "uppercase"
+  },
+  "@global": {
+    "html, body, #root": {
+      height: "100%"
+    }
+  },
+  container: {
+    [theme.breakpoints.up("sm")]: {
+      height: "calc(100% - 64px - 48px)"
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "calc(100% - 56px - 48px)"
+    }
+  },
+  item: {
+    [theme.breakpoints.down("xs")]: {
+      height: "50%"
+    }
   }
-};
+});
 
 const index = ({
   exercises,
@@ -39,16 +63,21 @@ const index = ({
   onSelectEdit,
   onEdit,
   editMode,
-  muscles
+  muscles,
+  classes
 }) => {
   return (
-    <Grid container>
-      <Grid item sm>
-        <Paper style={styles.Paper}>
+    <Grid container className={classes.container}>
+      <Grid item xs={12} sm={6} className={classes.item}>
+        <Paper className={classes.paper}>
           {exercises.map(([bodyPart, exercises]) => {
             return !category || category === bodyPart ? (
               <Fragment key={bodyPart}>
-                <Typography variant="headline" style={styles.Typo}>
+                <Typography
+                  variant="headline"
+                  color="secondary"
+                  className={classes.typo}
+                >
                   {bodyPart}
                 </Typography>
                 <List component="nav">
@@ -56,10 +85,16 @@ const index = ({
                     <ListItem button key={id} onClick={() => onSelect(id)}>
                       <ListItemText primary={title} />
                       <ListItemSecondaryAction key={id}>
-                        <IconButton onClick={() => onSelectEdit(id)}>
+                        <IconButton
+                          onClick={() => onSelectEdit(id)}
+                          color="primary"
+                        >
                           <Edit />
                         </IconButton>
-                        <IconButton onClick={() => onDelete(id)}>
+                        <IconButton
+                          onClick={() => onDelete(id)}
+                          color="primary"
+                        >
                           <Delete />
                         </IconButton>
                       </ListItemSecondaryAction>
@@ -71,8 +106,16 @@ const index = ({
           })}
         </Paper>
       </Grid>
-      <Grid item sm>
-        <Paper style={styles.Paper}>
+      <Grid item xs={12} sm={6} className={classes.item}>
+        <Paper className={classes.paper}>
+          <Typography
+            variant="headline"
+            gutterBottom
+            color="secondary"
+            style={{ textTransform: "uppercase" }}
+          >
+            {title}
+          </Typography>
           {editMode ? (
             <Form
               muscles={muscles}
@@ -81,10 +124,7 @@ const index = ({
               key={id}
             />
           ) : (
-            <Fragment>
-              <Typography variant="headline">{title}</Typography>
-              <Typography variant="subheading">{description}</Typography>
-            </Fragment>
+            <Typography variant="subheading">{description}</Typography>
           )}
         </Paper>
       </Grid>
@@ -92,4 +132,4 @@ const index = ({
   );
 };
 
-export default index;
+export default withStyles(styles)(index);

@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import CssBaseline from "@material-ui/core/CssBaseline";
+
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -82,6 +84,7 @@ class App extends Component {
 
     return (
       <Fragment>
+        <CssBaseline />
         <Header
           bodyParts={muscles}
           onExerciseCreate={this.handleExerciseCreate}
