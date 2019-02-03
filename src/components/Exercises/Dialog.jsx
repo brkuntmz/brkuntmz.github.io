@@ -10,6 +10,8 @@ import {
   DialogContentText
 } from "@material-ui/core";
 
+import { withContextHOC } from "../../context";
+
 class Create extends Component {
   state = {
     open: false
@@ -23,12 +25,12 @@ class Create extends Component {
 
   handleSubmission = exercise => {
     this.toggleButton();
-    this.props.onSubmit(exercise);
+    this.props.onCreate(exercise);
   };
 
   render() {
     const { open } = this.state;
-    const { bodyParts } = this.props;
+    const { muscles } = this.props;
 
     return (
       <Fragment>
@@ -49,7 +51,7 @@ class Create extends Component {
             <DialogContentText>
               Please create any exercise that'll be addictive!
             </DialogContentText>
-            <Form muscles={bodyParts} onSubmit={this.handleSubmission} />
+            <Form muscles={muscles} onSubmit={this.handleSubmission} />
           </DialogContent>
         </Dialog>
       </Fragment>
@@ -57,4 +59,4 @@ class Create extends Component {
   }
 }
 
-export default Create;
+export default withContextHOC(Create);

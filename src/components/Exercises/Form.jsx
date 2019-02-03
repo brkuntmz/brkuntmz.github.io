@@ -14,7 +14,6 @@ class Form extends Component {
 
   getInitState() {
     const { exercise } = this.props;
-    console.log(exercise);
     return exercise
       ? exercise
       : {

@@ -9,7 +9,7 @@ const styles = theme => ({
   }
 });
 
-const Header = ({ bodyParts, onExerciseCreate, classes }) => {
+const Header = ({ classes }) => {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -20,7 +20,7 @@ const Header = ({ bodyParts, onExerciseCreate, classes }) => {
         >
           Exercise DB
         </Typography>
-        <Dialog bodyParts={bodyParts} onSubmit={onExerciseCreate} />
+        <Dialog />
       </Toolbar>
     </AppBar>
   );

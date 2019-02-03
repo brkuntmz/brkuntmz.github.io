@@ -14,6 +14,8 @@ import {
 import { Delete, Edit } from "@material-ui/icons";
 import Form from "./Form";
 
+import { withContextHOC } from "../../context";
+
 const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 3,
@@ -50,7 +52,7 @@ const styles = theme => ({
 });
 
 const index = ({
-  exercises,
+  exercisesByMuscles,
   category,
   onSelect,
   exercise,
@@ -70,15 +72,15 @@ const index = ({
     <Grid container className={classes.container}>
       <Grid item xs={12} sm={6} className={classes.item}>
         <Paper className={classes.paper}>
-          {exercises.map(([bodyPart, exercises]) => {
-            return !category || category === bodyPart ? (
-              <Fragment key={bodyPart}>
+          {exercisesByMuscles.map(([muscles, exercises]) => {
+            return !category || category === muscles ? (
+              <Fragment key={muscles}>
                 <Typography
                   variant="headline"
                   color="secondary"
                   className={classes.typo}
                 >
-                  {bodyPart}
+                  {muscles}
                 </Typography>
                 <List component="nav">
                   {exercises.map(({ id, title, description }) => (
@@ -132,4 +134,4 @@ const index = ({
   );
 };
 
-export default withStyles(styles)(index);
+export default withContextHOC(withStyles(styles)(index));

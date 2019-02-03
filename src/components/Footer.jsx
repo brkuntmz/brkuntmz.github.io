@@ -1,12 +1,13 @@
 import React from "react";
 import { Tabs, AppBar, Tab } from "@material-ui/core";
 import withWidth from "@material-ui/core/withWidth";
+import { withContextHOC } from "../context";
 
-const Footer = ({ muscles, category, onSelect, width }) => {
+const Footer = ({ muscles, category, width, onCategorySelect }) => {
   const index = category ? muscles.findIndex(m => m === category) + 1 : 0;
 
   const onIndexSelect = (e, index) => {
-    return onSelect(index === 0 ? "" : muscles[index - 1]);
+    return onCategorySelect(index === 0 ? "" : muscles[index - 1]);
   };
 
   return (
@@ -28,4 +29,4 @@ const Footer = ({ muscles, category, onSelect, width }) => {
   );
 };
 
-export default withWidth()(Footer);
+export default withContextHOC(withWidth()(Footer));
