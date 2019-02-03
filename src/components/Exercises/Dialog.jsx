@@ -22,13 +22,13 @@ class Create extends Component {
   };
 
   handleSubmission = exercise => {
-    this.setState({ open: !this.state.open });
+    this.toggleButton();
     this.props.onSubmit(exercise);
   };
 
   render() {
     const { open } = this.state;
-    const { bodyParts, onSubmit } = this.props;
+    const { bodyParts } = this.props;
 
     return (
       <Fragment>

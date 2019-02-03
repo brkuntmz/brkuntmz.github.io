@@ -74,7 +74,12 @@ const index = ({
       <Grid item sm>
         <Paper style={styles.Paper}>
           {editMode ? (
-            <Form muscles={muscles} onSubmit={onEdit} exercise={exercise} />
+            <Form
+              muscles={muscles}
+              onSubmit={onEdit}
+              exercise={exercise}
+              key={id}
+            />
           ) : (
             <Fragment>
               <Typography variant="headline">{title}</Typography>
