@@ -15,6 +15,11 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      "@material-ui/core": "@material-ui/core/es"
+    }
+  },
   plugins: [
     new HTMLWebpackPlugin({
       template: "./index.html"
