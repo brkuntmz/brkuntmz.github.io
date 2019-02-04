@@ -5,7 +5,8 @@
       {
         "useBuiltIns": "entry",
         "targets": {
-          "browsers": [">0.25%", "not dead", "not ie <= 11", "not op_mini all"]
+          "browsers": [">0.25%", "not dead", "not ie <= 11", "not op_mini all"],
+          "node": 8
         }
       }
     ],
@@ -18,38 +19,10 @@
     [
       "import",
       {
-        "libraryName": "@material-ui/core",
-        "libraryDirectory": "",
-        "camel2DashComponentName": false
-      },
-      "@material-ui/core"
-    ],
-    [
-      "import",
-      {
-        "libraryName": "@material-ui/core/styles",
-        "libraryDirectory": "",
-        "camel2DashComponentName": false
-      },
-      "@material-ui/core/styles"
-    ],
-    [
-      "import",
-      {
-        "libraryName": "@material-ui/core/colors",
-        "libraryDirectory": "",
-        "camel2DashComponentName": false
-      },
-      "@material-ui/core/colors"
-    ],
-    [
-      "import",
-      {
         "libraryName": "@material-ui/icons",
         "libraryDirectory": "",
         "camel2DashComponentName": false
-      },
-      "@material-ui/icons"
+      }
     ]
   ]
 }

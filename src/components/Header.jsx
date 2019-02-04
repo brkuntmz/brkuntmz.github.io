@@ -14,11 +14,7 @@ const Header = ({ classes }) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography
-          variant="headline"
-          color="inherit"
-          className={classes.appBar}
-        >
+        <Typography variant="h5" color="inherit" className={classes.appBar}>
           Exercise DB
         </Typography>
         <Dialog />

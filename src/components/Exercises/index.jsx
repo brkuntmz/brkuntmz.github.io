@@ -75,7 +75,7 @@ const index = ({
             return !category || category === muscles ? (
               <Fragment key={muscles}>
                 <Typography
-                  variant="headline"
+                  variant="h5"
                   color="secondary"
                   className={classes.typo}
                 >
@@ -110,7 +110,7 @@ const index = ({
       <Grid item xs={12} sm={6} className={classes.item}>
         <Paper className={classes.paper}>
           <Typography
-            variant="headline"
+            variant="h5"
             gutterBottom
             color="secondary"
             style={{ textTransform: "uppercase" }}
@@ -125,7 +125,7 @@ const index = ({
               key={id}
             />
           ) : (
-            <Typography variant="subheading">{description}</Typography>
+            <Typography variant="subtitle1">{description}</Typography>
           )}
         </Paper>
       </Grid>

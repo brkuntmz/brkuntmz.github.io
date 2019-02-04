@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
+  "main": "dist/main.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --port 4000 --compress",
+    "start": "node ./dist/main.js",
+    "watch": "webpack --mode development --watch && nodemon dist/main",
     "dev": "webpack --mode development --progress",
     "build": "webpack --mode production --progress",
     "analyze-bundle": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json dist"
@@ -14,8 +16,10 @@
     "@material-ui/core": "^3.9.1",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/utils": "^3.0.0-alpha.3",
+    "express": "^4.16.4",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-jss": "^8.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -26,10 +30,11 @@
     "babel-loader": "^8.0.5",
     "babel-plugin-import": "^1.11.0",
     "clean-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.9",
+    "reload": "^2.4.0",
     "webpack": "^4.29.0",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-node-externals": "^1.7.2"
   }
 }

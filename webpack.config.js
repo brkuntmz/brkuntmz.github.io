@@ -1,7 +1,7 @@
-const HTMLWebpackPlugin = require("html-webpack-plugin");
+const externals = require("webpack-node-externals");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
-module.exports = {
+const commonConfig = {
   devtool: "cheap-module-source-map",
   module: {
     rules: [
@@ -15,13 +15,30 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new HTMLWebpackPlugin({
-      template: "./index.html"
-    }),
-    new CleanWebpackPlugin(["dist"])
-  ],
-  output: {
-    filename: "[name].[contenthash].js"
+  // plugins: [new CleanWebpackPlugin(["dist", "public"])],
+  resolve: {
+    alias: {
+      "@materal-ui/core": "@material-ui/core/es"
+    }
   }
 };
+
+module.exports = [
+  {
+    ...commonConfig,
+    entry: "./src/client",
+    output: {
+      path: `${__dirname}/public`
+    }
+  },
+  {
+    ...commonConfig,
+    target: "node",
+    entry: "./src/server",
+    externals: [
+      externals({
+        whitelist: [/@material-ui\/core\/*./]
+      })
+    ]
+  }
+];
