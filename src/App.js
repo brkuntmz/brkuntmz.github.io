@@ -1,12 +1,11 @@
 import React, { Component, Fragment } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import "./App.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Exercises from "./components/Exercises";
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
+import Exercises from "./components/Exercises/index.jsx";
 import { exercises, muscles } from "./store";
-import { Provider } from "./context";
+import { Provider } from "./context.jsx";
 
 class App extends Component {
   state = {

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-import Form from "./Form";
+import Form from "./Form.jsx";
 import AddIcon from "@material-ui/icons/Add";
 import {
   Fab,
@@ -10,7 +10,7 @@ import {
   DialogContentText
 } from "@material-ui/core";
 
-import { withContextHOC } from "../../context";
+import { withContextHOC } from "../../context.jsx";
 
 class Create extends Component {
   state = {

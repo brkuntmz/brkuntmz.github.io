@@ -12,9 +12,9 @@ import {
 } from "@material-ui/core";
 
 import { Delete, Edit } from "@material-ui/icons";
-import Form from "./Form";
+import Form from "./Form.jsx";
 
-import { withContextHOC } from "../../context";
+import { withContextHOC } from "../../context.jsx";
 
 const styles = theme => ({
   paper: {

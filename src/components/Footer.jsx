@@ -1,7 +1,7 @@
 import React from "react";
 import { Tabs, AppBar, Tab } from "@material-ui/core";
 import withWidth from "@material-ui/core/withWidth";
-import { withContextHOC } from "../context";
+import { withContextHOC } from "../context.jsx";
 
 const Footer = ({ muscles, category, width, onCategorySelect }) => {
   const index = category ? muscles.findIndex(m => m === category) + 1 : 0;
