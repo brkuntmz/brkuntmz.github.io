@@ -1,4 +1,5 @@
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   devtool: "cheap-module-source-map",
@@ -17,6 +18,10 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: "./index.html"
-    })
-  ]
+    }),
+    new CleanWebpackPlugin(["dist"])
+  ],
+  output: {
+    filename: "[name].[contenthash].js"
+  }
 };

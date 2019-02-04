@@ -1,8 +1,9 @@
 import "@babel/polyfill";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import { amber, deepOrange } from "@material-ui/core/colors";
 import React from "react";
 import { render } from "react-dom";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import { deepOrange, amber } from "@material-ui/core/colors";
+import App from "./App";
 
 const theme = createMuiTheme({
   palette: {
@@ -15,12 +16,9 @@ const theme = createMuiTheme({
   }
 });
 
-// code splitting attempt to reduce bundle size
-import(/* webpackChunkName: "app" */ "./App").then(({ default: App }) =>
-  render(
-    <MuiThemeProvider theme={theme}>
-      <App />
-    </MuiThemeProvider>,
-    document.getElementById("root")
-  )
+render(
+  <MuiThemeProvider theme={theme}>
+    <App />
+  </MuiThemeProvider>,
+  document.getElementById("root")
 );

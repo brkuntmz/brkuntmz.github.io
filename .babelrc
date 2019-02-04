@@ -13,6 +13,43 @@
   ],
   "plugins": [
     "@babel/proposal-class-properties",
-    "@babel/syntax-dynamic-import"
+    "@babel/transform-runtime",
+    // plugin to convert imports to targeted libraries
+    [
+      "import",
+      {
+        "libraryName": "@material-ui/core",
+        "libraryDirectory": "",
+        "camel2DashComponentName": false
+      },
+      "@material-ui/core"
+    ],
+    [
+      "import",
+      {
+        "libraryName": "@material-ui/core/styles",
+        "libraryDirectory": "",
+        "camel2DashComponentName": false
+      },
+      "@material-ui/core/styles"
+    ],
+    [
+      "import",
+      {
+        "libraryName": "@material-ui/core/colors",
+        "libraryDirectory": "",
+        "camel2DashComponentName": false
+      },
+      "@material-ui/core/colors"
+    ],
+    [
+      "import",
+      {
+        "libraryName": "@material-ui/icons",
+        "libraryDirectory": "",
+        "camel2DashComponentName": false
+      },
+      "@material-ui/icons"
+    ]
   ]
 }

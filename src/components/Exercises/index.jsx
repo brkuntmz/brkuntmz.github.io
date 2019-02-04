@@ -7,10 +7,9 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   Typography,
-  IconButton,
-  withStyles
+  IconButton
 } from "@material-ui/core";
-
+import { withStyles } from "@material-ui/core/styles";
 import { Delete, Edit } from "@material-ui/icons";
 import Form from "./Form.jsx";
 
